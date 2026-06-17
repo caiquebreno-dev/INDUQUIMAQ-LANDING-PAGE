@@ -36,8 +36,7 @@
             </nav>
 
             <div class="header__actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro"
-                    title="Alternar tema">
+                <button class="theme-toggle" id="themeToggle" aria-label="Alternar modo claro/escuro" title="Alternar tema">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon--sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon--moon"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
                 </button>
@@ -54,9 +53,8 @@
     <!-- ===== HERO ===== -->
     <section class="hero" id="hero">
         <div class="hero__bg" aria-hidden="true">
-            <div class="hero__shape hero__shape--1"></div>
-            <div class="hero__shape hero__shape--2"></div>
-            <div class="hero__shape hero__shape--3"></div>
+            <div class="hero__bg-image"></div>
+            <div class="hero__overlay"></div>
             <div class="hero__grid"></div>
         </div>
 
@@ -77,24 +75,11 @@
                 </a>
                 <a href="#servicos" class="btn btn--ghost btn--ghost-light">Conheça Nossos Serviços</a>
             </div>
-
-            <div class="hero__stats reveal" data-reveal>
-                <div class="stat">
-                    <span class="stat__number" data-counter data-target="100" data-suffix="%">0%</span>
-                    <span class="stat__label">Corte CNC a Plasma</span>
-                </div>
-                <div class="stat">
-                    <span class="stat__number" data-counter data-target="8" data-suffix="+">0+</span>
-                    <span class="stat__label">Tipos de Formas Metálicas</span>
-                </div>
-                <div class="stat">
-                    <span class="stat__number" data-counter data-target="2" data-suffix="">0</span>
-                    <span class="stat__label">Processos de Soldagem</span>
-                </div>
-            </div>
         </div>
 
-
+        <a href="#sobre" class="hero__scroll" aria-label="Rolar para a próxima seção">
+            <span></span>
+        </a>
     </section>
 
     <!-- ===== SOBRE ===== -->
@@ -121,17 +106,9 @@
                         </div>
 
                         <div class="process-carousel__slide">
-                            <img src="Imagens/cnc-plasma-corte-chapa.jpg" alt="Corte a plasma CNC em chapa metálica" loading="lazy" />
-                            <div class="process-carousel__caption">
-                                <span class="process-carousel__step">03</span>
-                                <span class="process-carousel__label">Corte a Plasma CNC</span>
-                            </div>
-                        </div>
-
-                        <div class="process-carousel__slide">
                             <img src="Imagens/pecas-cortadas-plasma-01.jpg" alt="Peças metálicas cortadas com precisão" loading="lazy" />
                             <div class="process-carousel__caption">
-                                <span class="process-carousel__step">04</span>
+                                <span class="process-carousel__step">03</span>
                                 <span class="process-carousel__label">Resultado: Peças Prontas</span>
                             </div>
                         </div>
@@ -149,7 +126,6 @@
                         <button class="process-carousel__dot is-active" data-index="0" aria-label="Etapa 1"></button>
                         <button class="process-carousel__dot" data-index="1" aria-label="Etapa 2"></button>
                         <button class="process-carousel__dot" data-index="2" aria-label="Etapa 3"></button>
-                        <button class="process-carousel__dot" data-index="3" aria-label="Etapa 4"></button>
                     </div>
 
                     <div class="about__frame-corner about__frame-corner--tl"></div>
@@ -161,7 +137,6 @@
                     <span class="about__badge-text">Corte a Plasma de Alta Precisão</span>
                 </div>
             </div>
-
 
             <div class="about__content reveal" data-reveal>
                 <span class="eyebrow">Quem Somos</span>
@@ -221,8 +196,7 @@
                 <!-- Card 1 -->
                 <article class="service-card reveal" data-reveal>
                     <div class="service-card__image">
-                        <img src="Imagens/formas-metalicas.jpg" alt="Formas metálicas para pré-moldados"
-                            loading="lazy" />
+                        <img src="Imagens/formas-metalicas.jpg" alt="Formas metálicas para pré-moldados" loading="lazy" />
                         <span class="service-card__tag">01</span>
                     </div>
                     <div class="service-card__body">
@@ -248,8 +222,7 @@
                 <!-- Card 2 -->
                 <article class="service-card reveal" data-reveal>
                     <div class="service-card__image">
-                        <img src="Imagens/corte-cnc-plasma.jpg" alt="Corte CNC a plasma de peças metálicas"
-                            loading="lazy" />
+                        <img src="Imagens/corte-cnc-plasma.jpg" alt="Corte CNC a plasma de peças metálicas" loading="lazy" />
                         <span class="service-card__tag">02</span>
                     </div>
                     <div class="service-card__body">
@@ -270,8 +243,7 @@
                 <!-- Card 3 -->
                 <article class="service-card reveal" data-reveal>
                     <div class="service-card__image">
-                        <img src="Imagens/soldagem-especializada.jpg"
-                            alt="Soldagem especializada MIG e eletrodo revestido" loading="lazy" />
+                        <img src="Imagens/soldagem-especializada.jpg" alt="Soldagem especializada MIG e eletrodo revestido" loading="lazy" />
                         <span class="service-card__tag">03</span>
                     </div>
                     <div class="service-card__body">
@@ -300,8 +272,7 @@
                         <h3 class="service-card__title">Formas Metálicas em Obra</h3>
                         <p class="service-card__text">
                             Formas metálicas para vigas e peças pré-moldadas instaladas diretamente
-                            no canteiro de obras, com armação de aço no interior, prontas para
-                            receber o concreto e produzir peças em série com alta precisão.
+                            no canteiro de obras, prontas para receber o concreto e produzir peças em série.
                         </p>
                         <ul class="service-card__list">
                             <li>Formas para vigas e pré-moldados em geral</li>
@@ -315,16 +286,21 @@
                 <!-- Card 5 -->
                 <article class="service-card reveal" data-reveal>
                     <div class="service-card__image">
-                        <img src="Imagens/fabricacao-maquinas.jpg" alt="Fabricação de máquinas industriais"
-                            loading="lazy" />
+                        <img src="Imagens/fabricacao-maquinas.jpg" alt="Fabricação de máquinas industriais sob encomenda" loading="lazy" style="object-position: center 30%;" />
                         <span class="service-card__tag">05</span>
                     </div>
                     <div class="service-card__body">
                         <h3 class="service-card__title">Fabricação de Máquinas</h3>
                         <p class="service-card__text">
-                            Projetos e fabricação de máquinas e estruturas sob encomenda,
-                            com engenharia aplicada às necessidades do cliente.
+                            Projetos e fabricação de máquinas e estruturas metálicas sob encomenda,
+                            com engenharia aplicada às necessidades de cada cliente.
                         </p>
+                        <ul class="service-card__list">
+                            <li>Máquinas industriais sob medida</li>
+                            <li>Estruturas metálicas diversas</li>
+                            <li>Fabricação por projeto</li>
+                            <li>Engenharia aplicada</li>
+                        </ul>
                         <a href="#orcamento" class="btn btn--outline btn--sm">Solicitar Orçamento</a>
                     </div>
                 </article>
@@ -396,79 +372,264 @@
                 <span class="eyebrow">Trabalhos Realizados</span>
                 <h2 class="section-title">Nossos Projetos</h2>
                 <p class="section-subtitle">
-                    Uma amostra de peças, estruturas e cortes produzidos pela Induquimaq.
+                    Conheça a variedade e a qualidade dos trabalhos realizados pela Induquimaq.
                 </p>
             </div>
 
-            <div class="gallery__grid">
-                <button class="gallery__item reveal" data-reveal data-lightbox-src="Imagens/projeto-01.jpg"
-                    data-lightbox-caption="Corte CNC a plasma de chapas metálicas">
-                    <img src="Imagens/projeto-01.jpg" alt="Corte CNC a plasma de chapas metálicas" loading="lazy" />
-                    <span class="gallery__overlay">
-                        <span class="gallery__zoom">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
-                        </span>
-                    </span>
-                </button>
-
-                <button class="gallery__item reveal" data-reveal data-lightbox-src="Imagens/projeto-02.jpg"
-                    data-lightbox-caption="Formas metálicas para pré-moldados">
-                    <img src="Imagens/projeto-02.jpg" alt="Formas metálicas para pré-moldados" loading="lazy" />
-                    <span class="gallery__overlay">
-                        <span class="gallery__zoom">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
-                        </span>
-                    </span>
-                </button>
-
-                <button class="gallery__item reveal" data-reveal data-lightbox-src="Imagens/projeto-03.jpg"
-                    data-lightbox-caption="Soldagem MIG em estrutura metálica">
-                    <img src="Imagens/projeto-03.jpg" alt="Soldagem MIG em estrutura metálica" loading="lazy" />
-                    <span class="gallery__overlay">
-                        <span class="gallery__zoom">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
-                        </span>
-                    </span>
-                </button>
-
-                <button class="gallery__item reveal" data-reveal data-lightbox-src="Imagens/projeto-04.jpg"
-                    data-lightbox-caption="Reforma de betoneira concluída">
-                    <img src="Imagens/projeto-04.jpg" alt="Reforma de betoneira concluída" loading="lazy" />
-                    <span class="gallery__overlay">
-                        <span class="gallery__zoom">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
-                        </span>
-                    </span>
-                </button>
-
-                <button class="gallery__item reveal" data-reveal data-lightbox-src="Imagens/projeto-05.jpg"
-                    data-lightbox-caption="Anéis e manilhas para construção civil">
-                    <img src="Imagens/projeto-05.jpg" alt="Anéis e manilhas para construção civil" loading="lazy" />
-                    <span class="gallery__overlay">
-                        <span class="gallery__zoom">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
-                        </span>
-                    </span>
-                </button>
-
-                <button class="gallery__item reveal" data-reveal data-lightbox-src="Imagens/projeto-06.jpg"
-                    data-lightbox-caption="Máquina fabricada sob encomenda">
-                    <img src="Imagens/projeto-06.jpg" alt="Máquina fabricada sob encomenda" loading="lazy" />
-                    <span class="gallery__overlay">
-                        <span class="gallery__zoom">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
-                        </span>
-                    </span>
-                </button>
+            <!-- Filtros -->
+            <div class="gallery-filters reveal" data-reveal>
+                <button class="gallery-filter is-active" data-filter="all">Todos</button>
+                <button class="gallery-filter" data-filter="cnc">Corte CNC</button>
+                <button class="gallery-filter" data-filter="formas">Formas Metálicas</button>
+                <button class="gallery-filter" data-filter="maquinas">Máquinas</button>
+                <button class="gallery-filter" data-filter="soldagem">Soldagem</button>
             </div>
+
+            <!-- Grid de projetos -->
+            <div class="gallery__grid" id="galleryGrid">
+
+                <!-- CNC -->
+                <button class="gallery__item" data-category="cnc"
+                    data-lightbox-src="Imagens/cnc-plasma-logo-induquimaq.jpg"
+                    data-lightbox-caption="Corte a plasma CNC — logotipo Induquimaq gravado em chapa metálica">
+                    <img src="Imagens/cnc-plasma-logo-induquimaq.jpg" alt="Corte a plasma CNC — logotipo Induquimaq" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Corte CNC</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="cnc"
+                    data-lightbox-src="Imagens/cnc-plasma-chapa-faiscas.jpg"
+                    data-lightbox-caption="Corte a plasma CNC com faíscas — precisão em chapa metálica">
+                    <img src="Imagens/cnc-plasma-chapa-faiscas.jpg" alt="Corte a plasma com faíscas" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Corte CNC</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="cnc"
+                    data-lightbox-src="Imagens/cnc-plasma-corte-chapa.jpg"
+                    data-lightbox-caption="Corte a plasma CNC em chapa grossa">
+                    <img src="Imagens/cnc-plasma-corte-chapa.jpg" alt="Corte a plasma em chapa grossa" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Corte CNC</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="cnc"
+                    data-lightbox-src="Imagens/pecas-cortadas-plasma-01.jpg"
+                    data-lightbox-caption="Peças metálicas cortadas a plasma com alta precisão">
+                    <img src="Imagens/pecas-cortadas-plasma-01.jpg" alt="Peças cortadas a plasma" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Corte CNC</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="cnc"
+                    data-lightbox-src="Imagens/pecas-cortadas-plasma-02.jpg"
+                    data-lightbox-caption="Lote de peças metálicas cortadas a plasma">
+                    <img src="Imagens/pecas-cortadas-plasma-02.jpg" alt="Lote de peças cortadas a plasma" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Corte CNC</span>
+                    </span>
+                </button>
+
+                <!-- Formas metálicas -->
+                <button class="gallery__item" data-category="formas"
+                    data-lightbox-src="Imagens/forma-anel-grande-azul.jpg"
+                    data-lightbox-caption="Forma metálica para anel grande — acabamento azul">
+                    <img src="Imagens/forma-anel-grande-azul.jpg" alt="Forma metálica para anel grande" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Formas Metálicas</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="formas"
+                    data-lightbox-src="Imagens/forma-anel-verde-01.jpg"
+                    data-lightbox-caption="Forma metálica para anel — acabamento verde">
+                    <img src="Imagens/forma-anel-verde-01.jpg" alt="Forma metálica para anel verde" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Formas Metálicas</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="formas"
+                    data-lightbox-src="Imagens/forma-anel-verde-detalhe.jpg"
+                    data-lightbox-caption="Detalhe interno — forma metálica para anel">
+                    <img src="Imagens/forma-anel-verde-detalhe.jpg" alt="Detalhe interno de forma para anel" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Formas Metálicas</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="formas"
+                    data-lightbox-src="Imagens/forma-caixa-azul-01.jpg"
+                    data-lightbox-caption="Forma metálica tipo caixa — acabamento azul industrial">
+                    <img src="Imagens/forma-caixa-azul-01.jpg" alt="Forma metálica tipo caixa azul" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Formas Metálicas</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="formas"
+                    data-lightbox-src="Imagens/forma-postes-concreto-azul.jpg"
+                    data-lightbox-caption="Formas metálicas para postes de concreto">
+                    <img src="Imagens/forma-postes-concreto-azul.jpg" alt="Formas para postes de concreto" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Formas Metálicas</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="formas"
+                    data-lightbox-src="Imagens/forma-postes-concreto-detalhe.jpg"
+                    data-lightbox-caption="Detalhe de forma para postes de concreto">
+                    <img src="Imagens/forma-postes-concreto-detalhe.jpg" alt="Detalhe de forma para postes" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Formas Metálicas</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="formas"
+                    data-lightbox-src="Imagens/forma-manilha-azul-par.jpg"
+                    data-lightbox-caption="Par de formas metálicas para manilhas">
+                    <img src="Imagens/forma-manilha-azul-par.jpg" alt="Formas para manilhas" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Formas Metálicas</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="formas"
+                    data-lightbox-src="Imagens/patio-formas-betoneira.jpg"
+                    data-lightbox-caption="Pátio com formas metálicas e betoneiras — Induquimaq">
+                    <img src="Imagens/patio-formas-betoneira.jpg" alt="Pátio com formas e betoneiras" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Formas Metálicas</span>
+                    </span>
+                </button>
+
+                <!-- Máquinas -->
+                <button class="gallery__item" data-category="maquinas"
+                    data-lightbox-src="Imagens/fabricacao-maquinas.jpg"
+                    data-lightbox-caption="Fabricação de máquina industrial sob encomenda">
+                    <img src="Imagens/fabricacao-maquinas.jpg" alt="Fabricação de máquina industrial" loading="lazy" style="object-position: center 30%;" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Máquinas</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="maquinas"
+                    data-lightbox-src="Imagens/cnc-plasma-maquina-geral.jpg"
+                    data-lightbox-caption="Máquina CNC a plasma — visão geral do equipamento">
+                    <img src="Imagens/cnc-plasma-maquina-geral.jpg" alt="Máquina CNC plasma visão geral" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Máquinas</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="maquinas"
+                    data-lightbox-src="Imagens/reforma-betoneiras.jpg"
+                    data-lightbox-caption="Reforma de betoneira — recuperação estrutural e funcional">
+                    <img src="Imagens/reforma-betoneiras.jpg" alt="Reforma de betoneira" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Máquinas</span>
+                    </span>
+                </button>
+
+                <!-- Soldagem -->
+                <button class="gallery__item" data-category="soldagem"
+                    data-lightbox-src="Imagens/soldagem-especializada.jpg"
+                    data-lightbox-caption="Soldagem especializada MIG em estrutura metálica">
+                    <img src="Imagens/soldagem-especializada.jpg" alt="Soldagem MIG especializada" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Soldagem</span>
+                    </span>
+                </button>
+
+                <button class="gallery__item" data-category="soldagem"
+                    data-lightbox-src="Imagens/galpao-soldagem-equipe.jpg"
+                    data-lightbox-caption="Equipe de soldagem no galpão da Induquimaq">
+                    <img src="Imagens/galpao-soldagem-equipe.jpg" alt="Equipe no galpão de soldagem" loading="lazy" />
+                    <span class="gallery__overlay">
+                        <span class="gallery__zoom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M11 8v6"/><path d="M8 11h6"/></svg>
+                        </span>
+                        <span class="gallery__label">Soldagem</span>
+                    </span>
+                </button>
+
+            </div><!-- /gallery__grid -->
+
+            <!-- Contador de resultados -->
+            <p class="gallery__count" id="galleryCount"></p>
+
         </div>
     </section>
 
     <!-- Lightbox -->
-    <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visualização de imagem">
         <div class="lightbox__inner">
             <img src="" alt="" id="lightboxImg" />
             <p class="lightbox__caption" id="lightboxCaption"></p>
+            <div class="lightbox__nav">
+                <button class="lightbox__nav-btn" id="lightboxPrev" aria-label="Imagem anterior">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <span class="lightbox__counter" id="lightboxCounter"></span>
+                <button class="lightbox__nav-btn" id="lightboxNext" aria-label="Próxima imagem">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                </button>
+            </div>
         </div>
         <button class="lightbox__close" id="lightboxClose" aria-label="Fechar imagem">
             <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
@@ -486,13 +647,11 @@
                 precisão e a tecnologia CNC da Induquimaq.
             </p>
             <div class="cta__actions">
-                <a href="https://wa.me/5588997955215?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento."
-                    target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg">
+                <a href="https://wa.me/5588997955215?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento." target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.008c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     Falar no WhatsApp
                 </a>
-                <a href="mailto:induquimaqmetalurgica@outlook.com"
-                    class="btn btn--ghost btn--ghost-light btn--lg">Enviar E-mail</a>
+                <a href="mailto:induquimaqmetalurgica@outlook.com" class="btn btn--ghost btn--ghost-light btn--lg">Enviar E-mail</a>
             </div>
         </div>
     </section>
@@ -515,8 +674,7 @@
                         </span>
                         <div>
                             <span class="contact__label">WhatsApp</span>
-                            <a href="https://wa.me/5588997955215" target="_blank" rel="noopener"
-                                class="contact__value">+55 88 99795-5215</a>
+                            <a href="https://wa.me/5588997955215" target="_blank" rel="noopener" class="contact__value">+55 88 99795-5215</a>
                         </div>
                     </li>
 
@@ -526,8 +684,7 @@
                         </span>
                         <div>
                             <span class="contact__label">E-mail</span>
-                            <a href="mailto:induquimaqmetalurgica@outlook.com"
-                                class="contact__value">induquimaqmetalurgica@outlook.com</a>
+                            <a href="mailto:induquimaqmetalurgica@outlook.com" class="contact__value">induquimaqmetalurgica@outlook.com</a>
                         </div>
                     </li>
 
@@ -537,8 +694,7 @@
                         </span>
                         <div>
                             <span class="contact__label">Localização</span>
-                            <a href="https://maps.app.goo.gl/r381TYrXMCjyTNwc8?g_st=iw" target="_blank" rel="noopener"
-                                class="contact__value">Quixeré — Ceará</a>
+                            <a href="https://maps.app.goo.gl/r381TYrXMCjyTNwc8?g_st=iw" target="_blank" rel="noopener" class="contact__value">Quixeré — Ceará</a>
                         </div>
                     </li>
 
@@ -592,16 +748,14 @@
                 <ul class="footer__links">
                     <li><a href="https://wa.me/5588997955215" target="_blank" rel="noopener">+55 88 99795-5215</a></li>
                     <li><a href="mailto:induquimaqmetalurgica@outlook.com">induquimaqmetalurgica@outlook.com</a></li>
-                    <li><a href="https://maps.app.goo.gl/r381TYrXMCjyTNwc8?g_st=iw" target="_blank"
-                            rel="noopener">Quixeré — Ceará</a></li>
+                    <li><a href="https://maps.app.goo.gl/r381TYrXMCjyTNwc8?g_st=iw" target="_blank" rel="noopener">Quixeré — Ceará</a></li>
                 </ul>
             </div>
 
             <div class="footer__col">
                 <h4 class="footer__title">Redes Sociais</h4>
                 <div class="footer__social">
-                    <a href="https://wa.me/5588997955215" target="_blank" rel="noopener" aria-label="WhatsApp"
-                        class="social-icon">
+                    <a href="https://wa.me/5588997955215" target="_blank" rel="noopener" aria-label="WhatsApp" class="social-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.008c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                     </a>
                     <a href="mailto:induquimaqmetalurgica@outlook.com" aria-label="E-mail" class="social-icon">
@@ -616,8 +770,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/5588997955215" target="_blank" rel="noopener" class="whatsapp-float"
-        aria-label="Falar no WhatsApp">
+    <a href="https://wa.me/5588997955215" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Falar no WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.008c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     </a>
 

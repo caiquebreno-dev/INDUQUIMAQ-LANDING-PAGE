@@ -2,323 +2,499 @@
    INDUQUIMAQ METALÚRGICA — SCRIPT
    ========================================================= */
 
-(function () {
+(() => {
   'use strict';
+
+  /* ============================================================
+     UTILITÁRIOS
+     ============================================================ */
+
+  const $ = (selector, parent = document) =>
+    parent ? parent.querySelector(selector) : null;
+
+  const $$ = (selector, parent = document) =>
+    parent ? [...parent.querySelectorAll(selector)] : [];
+
+  const safeStorage = {
+    get(key) {
+      try {
+        return localStorage.getItem(key);
+      } catch {
+        return null;
+      }
+    },
+
+    set(key, value) {
+      try {
+        localStorage.setItem(key, value);
+      } catch {}
+    }
+  };
 
   /* ============================================================
      1. TEMA CLARO / ESCURO
      ============================================================ */
-  const themeToggle = document.getElementById('themeToggle');
-  const THEME_KEY   = 'induquimaq-theme';
+
+  const themeToggle = $('#themeToggle');
+  const THEME_KEY = 'induquimaq-theme';
 
   function applyTheme(theme) {
+    const root = document.documentElement;
+
     if (theme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
+      root.setAttribute('data-theme', 'dark');
     } else {
-      document.documentElement.removeAttribute('data-theme');
+      root.removeAttribute('data-theme');
     }
-    localStorage.setItem(THEME_KEY, theme);
+
+    safeStorage.set(THEME_KEY, theme);
   }
 
   function getPreferredTheme() {
-    const stored = localStorage.getItem(THEME_KEY);
-    if (stored) return stored;
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    const storedTheme = safeStorage.get(THEME_KEY);
+
+    if (storedTheme) {
+      return storedTheme;
+    }
+
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? 'dark'
+      : 'light';
   }
 
-  // Aplica tema salvo imediatamente para evitar flash
   applyTheme(getPreferredTheme());
 
   if (themeToggle) {
     themeToggle.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme') === 'dark'
-        ? 'dark'
-        : 'light';
-      applyTheme(current === 'dark' ? 'light' : 'dark');
+      const currentTheme =
+        document.documentElement.getAttribute('data-theme') === 'dark'
+          ? 'dark'
+          : 'light';
+
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
     });
   }
 
-  // Respeita mudança do sistema operacional enquanto na página
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem(THEME_KEY)) {
-      applyTheme(e.matches ? 'dark' : 'light');
+  const darkModeMedia = window.matchMedia(
+    '(prefers-color-scheme: dark)'
+  );
+
+  darkModeMedia.addEventListener('change', (event) => {
+    if (!safeStorage.get(THEME_KEY)) {
+      applyTheme(event.matches ? 'dark' : 'light');
     }
   });
 
-
   /* ============================================================
-     2. HEADER — scroll / sombra
+     2. HEADER
      ============================================================ */
-  const header = document.getElementById('header');
+
+  const header = $('#header');
 
   function updateHeader() {
     if (!header) return;
-    if (window.scrollY > 20) {
-      header.classList.add('is-scrolled');
-    } else {
-      header.classList.remove('is-scrolled');
-    }
+
+    header.classList.toggle(
+      'is-scrolled',
+      window.scrollY > 20
+    );
   }
-
-  window.addEventListener('scroll', updateHeader, { passive: true });
-  updateHeader();
-
 
   /* ============================================================
      3. MENU MOBILE
      ============================================================ */
-  const menuToggle = document.getElementById('menuToggle');
-  const nav        = document.getElementById('nav');
+
+  const menuToggle = $('#menuToggle');
+  const nav = $('#nav');
 
   function closeMenu() {
+    if (!menuToggle || !nav) return;
+
     menuToggle.classList.remove('is-active');
     menuToggle.setAttribute('aria-expanded', 'false');
+
     nav.classList.remove('is-open');
+
     document.body.style.overflow = '';
   }
 
   function openMenu() {
+    if (!menuToggle || !nav) return;
+
     menuToggle.classList.add('is-active');
     menuToggle.setAttribute('aria-expanded', 'true');
+
     nav.classList.add('is-open');
+
     document.body.style.overflow = 'hidden';
   }
 
   if (menuToggle && nav) {
     menuToggle.addEventListener('click', () => {
-      const isOpen = nav.classList.contains('is-open');
-      isOpen ? closeMenu() : openMenu();
+      nav.classList.contains('is-open')
+        ? closeMenu()
+        : openMenu();
     });
 
-    // Fecha ao clicar em um link de navegação
-    nav.querySelectorAll('.nav__link').forEach((link) => {
+    $$('.nav__link', nav).forEach((link) => {
       link.addEventListener('click', closeMenu);
     });
 
-    // Fecha ao redimensionar para desktop
     window.addEventListener('resize', () => {
-      if (window.innerWidth > 900) closeMenu();
+      if (window.innerWidth > 860) {
+        closeMenu();
+      }
     });
   }
 
-
   /* ============================================================
-     4. ACTIVE NAV LINK — destaca o link da seção visível
+     4. ACTIVE NAV LINK
      ============================================================ */
-  const sections  = document.querySelectorAll('section[id], div[id]');
-  const navLinks  = document.querySelectorAll('.nav__link');
+
+  const sections = $$('section[id]');
+  const navLinks = $$('.nav__link');
 
   function setActiveLink() {
-    let current = '';
-    const scrollY = window.scrollY + 100;
+    if (!sections.length || !navLinks.length) return;
+
+    let currentSection = '';
+    const scrollPosition = window.scrollY + 100;
 
     sections.forEach((section) => {
-      if (section.offsetTop <= scrollY) {
-        current = section.getAttribute('id');
+      if (section.offsetTop <= scrollPosition) {
+        currentSection = section.id;
       }
     });
 
     navLinks.forEach((link) => {
-      link.classList.remove('is-active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('is-active');
-      }
+      link.classList.toggle(
+        'is-active',
+        link.getAttribute('href') === `#${currentSection}`
+      );
     });
   }
 
-  window.addEventListener('scroll', setActiveLink, { passive: true });
-  setActiveLink();
-
-
   /* ============================================================
-     5. REVEAL ON SCROLL — [data-reveal]
+     5. REVEAL ON SCROLL
      ============================================================ */
-  const revealEls = document.querySelectorAll('[data-reveal]');
 
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+  const revealElements = $$('[data-reveal]');
+
+  if (revealElements.length) {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
           entry.target.classList.add('is-visible');
-          revealObserver.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-  );
-
-  revealEls.forEach((el) => revealObserver.observe(el));
-
-
-  /* ============================================================
-     6. CONTADORES ANIMADOS — [data-counter]
-     ============================================================ */
-  const counterEls = document.querySelectorAll('[data-counter]');
-
-  function animateCounter(el) {
-    const target   = parseInt(el.getAttribute('data-target'), 10);
-    const suffix   = el.getAttribute('data-suffix') || '';
-    const duration = 1400; // ms
-    const step     = 16;   // ~60fps
-    const increment = target / (duration / step);
-    let current = 0;
-
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        current = target;
-        clearInterval(timer);
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px 0px'
       }
-      el.textContent = Math.floor(current) + suffix;
-    }, step);
+    );
+
+    revealElements.forEach((element) =>
+      revealObserver.observe(element)
+    );
   }
 
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
-        }
+  /* ============================================================
+     6. CARROSSEL DE PROCESSO
+     ============================================================ */
+
+  const carousel = $('#processCarousel');
+
+  if (carousel) {
+    const slides = $$('.process-carousel__slide', carousel);
+    const dots = $$('.process-carousel__dot', carousel);
+
+    const btnPrev = $('#carouselPrev');
+    const btnNext = $('#carouselNext');
+
+    let currentSlide = 0;
+    let autoTimer = null;
+
+    function goToSlide(index) {
+      if (!slides.length) return;
+
+      slides[currentSlide]?.classList.remove('is-active');
+      dots[currentSlide]?.classList.remove('is-active');
+
+      currentSlide =
+        (index + slides.length) % slides.length;
+
+      slides[currentSlide]?.classList.add('is-active');
+      dots[currentSlide]?.classList.add('is-active');
+    }
+
+    function stopAuto() {
+      if (!autoTimer) return;
+
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+
+    function startAuto() {
+      stopAuto();
+
+      autoTimer = setInterval(() => {
+        goToSlide(currentSlide + 1);
+      }, 4000);
+    }
+
+    btnPrev?.addEventListener('click', () => {
+      goToSlide(currentSlide - 1);
+      startAuto();
+    });
+
+    btnNext?.addEventListener('click', () => {
+      goToSlide(currentSlide + 1);
+      startAuto();
+    });
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const index = Number(dot.dataset.index);
+
+        if (Number.isNaN(index)) return;
+
+        goToSlide(index);
+        startAuto();
       });
-    },
-    { threshold: 0.5 }
-  );
+    });
 
-  counterEls.forEach((el) => counterObserver.observe(el));
+    let touchStartX = 0;
 
+    carousel.addEventListener(
+      'touchstart',
+      (event) => {
+        touchStartX = event.touches[0]?.clientX || 0;
+      },
+      { passive: true }
+    );
+
+    carousel.addEventListener('touchend', (event) => {
+      const touchEndX =
+        event.changedTouches[0]?.clientX || 0;
+
+      const difference = touchStartX - touchEndX;
+
+      if (Math.abs(difference) <= 40) return;
+
+      goToSlide(
+        difference > 0
+          ? currentSlide + 1
+          : currentSlide - 1
+      );
+
+      startAuto();
+    });
+
+    carousel.addEventListener('mouseenter', stopAuto);
+    carousel.addEventListener('mouseleave', startAuto);
+
+    const carouselObserver = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          startAuto();
+        } else {
+          stopAuto();
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    carouselObserver.observe(carousel);
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopAuto();
+      } else {
+        startAuto();
+      }
+    });
+  }
 
   /* ============================================================
-     7. LIGHTBOX DA GALERIA
+     7. LIGHTBOX
      ============================================================ */
-  const lightbox        = document.getElementById('lightbox');
-  const lightboxImg     = document.getElementById('lightboxImg');
-  const lightboxCaption = document.getElementById('lightboxCaption');
-  const lightboxClose   = document.getElementById('lightboxClose');
-  const galleryItems    = document.querySelectorAll('[data-lightbox-src]');
 
-  function openLightbox(src, caption) {
+  const lightbox = $('#lightbox');
+  const lightboxImg = $('#lightboxImg');
+  const lightboxCaption = $('#lightboxCaption');
+  const lightboxClose = $('#lightboxClose');
+
+  const galleryItems = $$('[data-lightbox-src]');
+  const galleryArray = [...galleryItems];
+
+  let currentGalleryIndex = -1;
+
+  function openLightbox(src, caption = '') {
     if (!lightbox || !lightboxImg) return;
-    lightboxImg.src        = src;
-    lightboxImg.alt        = caption || '';
-    lightboxCaption.textContent = caption || '';
-    lightbox.classList.add('is-open');
-    lightbox.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+    if (!src) return;
 
-    // Animação de entrada
-    requestAnimationFrame(() => {
-      lightbox.classList.add('is-visible');
-    });
+    lightboxImg.src = src;
+    lightboxImg.alt = caption;
+
+    if (lightboxCaption) {
+      lightboxCaption.textContent = caption;
+    }
+
+    lightbox.classList.add('is-active');
+    lightbox.setAttribute('aria-hidden', 'false');
+
+    document.body.style.overflow = 'hidden';
   }
 
   function closeLightbox() {
     if (!lightbox) return;
-    lightbox.classList.remove('is-visible');
+
+    lightbox.classList.remove('is-active');
     lightbox.setAttribute('aria-hidden', 'true');
 
-    const onTransitionEnd = () => {
-      lightbox.classList.remove('is-open');
-      lightboxImg.src = '';
-      document.body.style.overflow = '';
-      lightbox.removeEventListener('transitionend', onTransitionEnd);
-    };
+    document.body.style.overflow = '';
 
-    lightbox.addEventListener('transitionend', onTransitionEnd, { once: true });
+    setTimeout(() => {
+      if (lightboxImg) {
+        lightboxImg.src = '';
+      }
+    }, 300);
   }
 
-  galleryItems.forEach((item) => {
+  galleryItems.forEach((item, index) => {
     item.addEventListener('click', () => {
-      const src     = item.getAttribute('data-lightbox-src');
-      const caption = item.getAttribute('data-lightbox-caption');
-      openLightbox(src, caption);
+      currentGalleryIndex = index;
+
+      openLightbox(
+        item.dataset.lightboxSrc,
+        item.dataset.lightboxCaption
+      );
     });
   });
 
-  if (lightboxClose) {
-    lightboxClose.addEventListener('click', closeLightbox);
-  }
+  lightboxClose?.addEventListener(
+    'click',
+    closeLightbox
+  );
 
-  if (lightbox) {
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-  }
-
-  // Fecha com tecla Escape
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && lightbox && lightbox.classList.contains('is-open')) {
+  lightbox?.addEventListener('click', (event) => {
+    if (event.target === lightbox) {
       closeLightbox();
     }
   });
 
-  // Navegação por teclado na galeria (setas)
-  const galleryArr = Array.from(galleryItems);
-  let currentIndex = -1;
-
-  galleryItems.forEach((item, idx) => {
-    item.addEventListener('click', () => { currentIndex = idx; });
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (!lightbox || !lightbox.classList.contains('is-open')) return;
-
-    if (e.key === 'ArrowRight') {
-      currentIndex = (currentIndex + 1) % galleryArr.length;
-      const next = galleryArr[currentIndex];
-      openLightbox(
-        next.getAttribute('data-lightbox-src'),
-        next.getAttribute('data-lightbox-caption')
-      );
+  document.addEventListener('keydown', (event) => {
+    if (
+      !lightbox ||
+      !lightbox.classList.contains('is-active')
+    ) {
+      return;
     }
 
-    if (e.key === 'ArrowLeft') {
-      currentIndex = (currentIndex - 1 + galleryArr.length) % galleryArr.length;
-      const prev = galleryArr[currentIndex];
+    switch (event.key) {
+      case 'Escape':
+        closeLightbox();
+        break;
+
+      case 'ArrowRight':
+        if (!galleryArray.length) return;
+
+        currentGalleryIndex =
+          (currentGalleryIndex + 1) %
+          galleryArray.length;
+        break;
+
+      case 'ArrowLeft':
+        if (!galleryArray.length) return;
+
+        currentGalleryIndex =
+          (currentGalleryIndex - 1 + galleryArray.length) %
+          galleryArray.length;
+        break;
+
+      default:
+        return;
+    }
+
+    if (
+      event.key === 'ArrowRight' ||
+      event.key === 'ArrowLeft'
+    ) {
+      const item =
+        galleryArray[currentGalleryIndex];
+
+      if (!item) return;
+
       openLightbox(
-        prev.getAttribute('data-lightbox-src'),
-        prev.getAttribute('data-lightbox-caption')
+        item.dataset.lightboxSrc,
+        item.dataset.lightboxCaption
       );
     }
   });
-
 
   /* ============================================================
-     8. SMOOTH SCROLL — links internos (#)
+     8. SMOOTH SCROLL
      ============================================================ */
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', (e) => {
-      const href = anchor.getAttribute('href');
-      if (href === '#') return;
 
-      const target = document.querySelector(href);
+  $$('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (event) => {
+      const href = anchor.getAttribute('href');
+
+      if (!href || href === '#') return;
+
+      const target = $(href);
+
       if (!target) return;
 
-      e.preventDefault();
+      event.preventDefault();
 
-      const headerHeight = header ? header.offsetHeight : 0;
-      const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+      const offset =
+        header?.offsetHeight || 0;
 
-      window.scrollTo({ top, behavior: 'smooth' });
+      const top =
+        target.getBoundingClientRect().top +
+        window.scrollY -
+        offset;
+
+      window.scrollTo({
+        top,
+        behavior: 'smooth'
+      });
     });
   });
 
-
   /* ============================================================
-     9. BOTÃO FLUTUANTE WHATSAPP — esconde ao rolar para o topo
+     9. WHATSAPP FLOAT
      ============================================================ */
-  const whatsappFloat = document.querySelector('.whatsapp-float');
+
+  const whatsappFloat = $('.whatsapp-float');
 
   function updateWhatsapp() {
     if (!whatsappFloat) return;
-    if (window.scrollY > 300) {
-      whatsappFloat.classList.add('is-visible');
-    } else {
-      whatsappFloat.classList.remove('is-visible');
-    }
+
+    whatsappFloat.classList.toggle(
+      'is-visible',
+      window.scrollY > 300
+    );
   }
 
-  window.addEventListener('scroll', updateWhatsapp, { passive: true });
-  updateWhatsapp();
+  /* ============================================================
+     10. SCROLL CENTRALIZADO
+     ============================================================ */
+
+  function handleScroll() {
+    updateHeader();
+    setActiveLink();
+    updateWhatsapp();
+  }
+
+  window.addEventListener('scroll', handleScroll, {
+    passive: true
+  });
+
+  handleScroll();
 
 })();
